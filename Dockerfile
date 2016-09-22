@@ -7,7 +7,8 @@ FROM haukehein/phusion_passenger-customizable:0.9.19_update
 MAINTAINER haukehein <BitCrusher@gmx-topmail.de>
 
 ENV HOME /root
-RUN apt-get update && \
+RUN cd && \
+apt-get update && \
 apt-get -y install bash sudo wget git && \
 git clone https://github.com/torch/distro.git ~/torch --recursive && \
 cd ~/torch && \
