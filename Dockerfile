@@ -9,7 +9,7 @@ MAINTAINER haukehein <BitCrusher@gmx-topmail.de>
 ENV HOME /root
 RUN cd && \
 apt-get update && \
-apt-get -y install bash sudo wget git && \
+apt-get -y install bash sudo libreadline-dev wget git && \
 git clone https://github.com/torch/distro.git ~/torch --recursive && \
 cd ~/torch && \
 bash ./install-deps && \
