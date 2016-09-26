@@ -5,14 +5,18 @@
 [ -z "$( which docker     2> /dev/null )" ]  &&  echo "ERROR: 'docker' is not installed!"                &&  exit 1
 [ -z "$( docker --version 2> /dev/null )" ]  &&  echo "ERROR: You are not allowed to execute 'docker'!"  &&  exit 1
 
-if [ -z "$( docker images haukehein/phusion_passenger-customizable  2> /dev/null | grep 0.9.19_update )" ]
+
+  BUILD=haukehein/torch7:1.0.0
+  FROM=haukehein/phusion_passenger-customizable:0.9.19_update
+
+if [ -z "$( docker images $(echo -E "$FROM" | cut -d: -f1)  2> /dev/null | grep $(echo -E "$FROM" | cut -d: -f2) )" ]
 then
 	TMP=`mktemp -d`
-		git clone https://github.com/haukehein/phusion_passenger-customizable.git "$TMP" --recursive  && \
+		git clone https://github.com/$(echo -E "$FROM" | cut -d: -f1).git "$TMP" --recursive  && \
 		cd "$TMP"  && \
 		bash ./build.sh
 	cd -  
 	rm -rf "$TMP"
 fi
 
-docker build $1 -t haukehein/torch7:1.0.0 .
+docker build $1 -t $BUILD .
