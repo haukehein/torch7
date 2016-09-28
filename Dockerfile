@@ -16,7 +16,7 @@ bash ./install-deps && \
 rm -f /bin/sh && ln -sr /bin/bash /bin/sh && \
 ./install.sh && \
 rm -f /bin/sh && ln -sr /bin/bash /bin/sh && \
-source ~/.bashrc' && \
+source ~/.bashrc && \
 cd  && \
 apt-get -y autoremove && \
 apt-get clean && \
