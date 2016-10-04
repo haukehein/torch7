@@ -11,7 +11,7 @@ SHELL ["/bin/bash", "--login -c"]
 
 RUN cd && \
 apt-get update && \
-apt-get -y install bash sudo libreadline-dev wget git && \
+apt-get -y install bash sudo wget git libreadline-dev && \
 git clone https://github.com/torch/distro.git ~/torch --recursive && \
 cd ~/torch && \
 bash ./install-deps && \
